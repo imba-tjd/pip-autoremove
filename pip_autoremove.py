@@ -102,11 +102,7 @@ def show_freeze(dist):
 
 
 def remove_dists(dists):
-    if sys.executable:
-        pip_cmd = [sys.executable, "-m", "pip"]
-    else:
-        pip_cmd = ["pip"]
-    subprocess.check_call(pip_cmd + ["uninstall", "-y"] + [d.project_name for d in dists])
+    subprocess.run([sys.executable, '-m', 'pip', 'uninstall', '-y'] + [d.project_name for d in dists], check=True)
 
 
 def get_graph():
