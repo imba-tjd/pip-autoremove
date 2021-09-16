@@ -1,5 +1,3 @@
-from __future__ import print_function
-
 import optparse
 import subprocess
 import sys
@@ -16,23 +14,13 @@ from pkg_resources import (
 __version__ = "0.10.0"
 
 try:
-    raw_input
-except NameError:
-    raw_input = input
-
-try:
-    ModuleNotFoundError
-except NameError:
-    ModuleNotFoundError = ImportError
-
-try:
     # pip >= 10.0.0 hides main in pip._internal. We'll monkey patch what we need and hopefully this becomes available
     # at some point.
     from pip._internal import logger, main
 
     pip.main = main
     pip.logger = logger
-except (ModuleNotFoundError, ImportError):
+except ImportError:
     pass
 
 
@@ -102,7 +90,7 @@ def fixed_point(f, x):
 
 
 def confirm(prompt):
-    return raw_input(prompt) == "y"
+    return input(prompt) == 'y'
 
 
 def show_dist(dist):
