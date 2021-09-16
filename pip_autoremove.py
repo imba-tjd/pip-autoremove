@@ -29,7 +29,7 @@ WHITELIST = ["pip", "setuptools", "pip-autoremove", "wheel"]
 
 def autoremove(names, yes=False):
     dead = list_dead(names)
-    if dead and (yes or confirm("Uninstall (y/N)? ")):
+    if dead and (yes or input("Uninstall (y/N)? ") == 'y'):
         remove_dists(dead)
 
 
@@ -87,10 +87,6 @@ def fixed_point(f, x):
         if y == x:
             return x
         x = y
-
-
-def confirm(prompt):
-    return input(prompt) == 'y'
 
 
 def show_dist(dist):
