@@ -121,7 +121,7 @@ def main(argv=None):
     if args.leaves or args.freeze:
         list_leaves(args.freeze)
     elif args.list:
-        list_dead(args)
+        list_dead(args.pkgs)
     elif len(args.pkgs) == 0:
         parser.print_help()
     else:
@@ -145,9 +145,7 @@ def list_leaves(freeze=False):
 
 
 def create_parser():
-    parser = argparse.ArgumentParser(
-        description="usage: %prog [OPTION]... [NAME]..."
-    )
+    parser = argparse.ArgumentParser()
     parser.add_argument(
         'pkgs',
         nargs='*',
