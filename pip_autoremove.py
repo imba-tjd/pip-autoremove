@@ -13,16 +13,6 @@ from pkg_resources import (
 
 __version__ = "0.10.0"
 
-try:
-    # pip >= 10.0.0 hides main in pip._internal. We'll monkey patch what we need and hopefully this becomes available
-    # at some point.
-    from pip._internal import logger, main
-
-    pip.main = main
-    pip.logger = logger
-except ImportError:
-    pass
-
 
 WHITELIST = ["pip", "setuptools", "pip-autoremove", "wheel"]
 
