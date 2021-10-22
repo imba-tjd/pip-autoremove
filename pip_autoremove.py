@@ -11,8 +11,6 @@ from pkg_resources import (
     working_set,
 )
 
-__version__ = "0.10.0"
-
 
 WHITELIST = ["pip", "setuptools", "pip-autoremove", "wheel"]
 

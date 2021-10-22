@@ -2,7 +2,7 @@ from setuptools import setup
 
 setup(
     name='pip-autoremove-3',
-    version='0.1',
+    version='0.10.2',
     description='Remove a package and its unused dependencies',
     py_modules=['pip_autoremove'],
     license='Apache License 2.0',
