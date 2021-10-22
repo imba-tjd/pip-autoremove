@@ -3,7 +3,6 @@ import subprocess
 import sys
 from collections import defaultdict
 
-import pip
 from pkg_resources import (
     DistributionNotFound,
     VersionConflict,
