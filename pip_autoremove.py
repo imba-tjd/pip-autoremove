@@ -1,4 +1,4 @@
-import optparse
+import argparse
 import subprocess
 import sys
 from collections import defaultdict
@@ -125,17 +125,17 @@ def requires(dist):
     return required
 
 
-def main(argv=None):
+def main():
     parser = create_parser()
-    (opts, args) = parser.parse_args(argv)
-    if opts.leaves or opts.freeze:
-        list_leaves(opts.freeze)
-    elif opts.list:
+    args = parser.parse_args()
+    if args.leaves or args.freeze:
+        list_leaves(args.freeze)
+    elif args.list:
         list_dead(args)
-    elif len(args) == 0:
+    elif len(args.pkgs) == 0:
         parser.print_help()
     else:
-        autoremove(args, yes=opts.yes)
+        autoremove(args.pkgs, yes=args.yes)
 
 
 def get_leaves(graph):
@@ -155,36 +155,36 @@ def list_leaves(freeze=False):
 
 
 def create_parser():
-    parser = optparse.OptionParser(
-        usage="usage: %prog [OPTION]... [NAME]...",
-        version="%prog " + __version__,
+    parser = argparse.ArgumentParser(
+        description="usage: %prog [OPTION]... [NAME]..."
     )
-    parser.add_option(
+    parser.add_argument(
+        'pkgs',
+        nargs='*',
+        help='The pkgs that are going to be removed.'
+    )
+    parser.add_argument(
         "-l",
         "--list",
         action="store_true",
-        default=False,
         help="list unused dependencies, but don't uninstall them.",
     )
-    parser.add_option(
+    parser.add_argument(
         "-L",
         "--leaves",
         action="store_true",
-        default=False,
         help="list leaves (packages which are not used by any others).",
     )
-    parser.add_option(
+    parser.add_argument(
         "-y",
         "--yes",
         action="store_true",
-        default=False,
         help="don't ask for confirmation of uninstall deletions.",
     )
-    parser.add_option(
+    parser.add_argument(
         "-f",
         "--freeze",
         action="store_true",
-        default=False,
         help="list leaves (packages which are not used by any others) in requirements.txt format",
     )
     return parser
