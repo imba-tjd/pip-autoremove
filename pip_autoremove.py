@@ -11,7 +11,7 @@ from pkg_resources import (
 )
 
 
-WHITELIST = ["pip", "setuptools", "pip-autoremove", "wheel"]
+WHITELIST = ["pip", "setuptools", "pip-autoremove", "wheel", "pip-autoremove-3"]
 
 
 def autoremove(names, yes=False):
