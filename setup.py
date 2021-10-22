@@ -1,7 +1,7 @@
 from setuptools import setup
 
 setup(
-    name='pip-autoremove-2',
+    name='pip-autoremove-3',
     version='0.1',
     description='Remove a package and its unused dependencies',
     py_modules=['pip_autoremove'],
