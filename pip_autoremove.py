@@ -26,12 +26,13 @@ def list_dead(names):
         try:
             start.add(get_distribution(name))
         except DistributionNotFound:
-            print("%s is not an installed pip module, skipping" % name, file=sys.stderr)
+            print(f"{name} is not an installed pip module, skipping", file=sys.stderr)
         except VersionConflict:
             print(
-                "%s is not the currently installed version, skipping" % name,
+                f"{name} is not the currently installed version, skipping",
                 file=sys.stderr,
             )
+
     graph = get_graph()
     dead = exclude_whitelist(find_all_dead(graph, start))
     for d in start:
@@ -77,7 +78,7 @@ def fixed_point(f, x):
 
 
 def show_dist(dist):
-    print("%s %s (%s)" % (dist.project_name, dist.version, dist.location))
+    print(f"{dist.project_name} {dist.version} ({dist.location})")
 
 
 def show_freeze(dist):
@@ -108,7 +109,7 @@ def requires(dist):
             required.append(get_distribution(pkg.project_name))
         except DistributionNotFound as e:
             print(e.report(), file=sys.stderr)
-            print("Skipping %s" % pkg.project_name, file=sys.stderr)
+            print(f"Skipping {pkg.project_name}", file=sys.stderr)
     return required
 
 
