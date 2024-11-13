@@ -1,6 +1,6 @@
 import subprocess
 
-import pkg_resources
+from pip._vendor import pkg_resources
 
 import pip_autoremove
 

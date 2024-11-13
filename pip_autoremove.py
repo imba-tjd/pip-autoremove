@@ -3,7 +3,7 @@ import subprocess
 import sys
 from collections import defaultdict
 
-from pkg_resources import (
+from pip._vendor.pkg_resources import (
     DistributionNotFound,
     VersionConflict,
     get_distribution,
